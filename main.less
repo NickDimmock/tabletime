@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css?family=Zilla+Slab+Highlight:700&text=Tableim!');
+@import url('https://fonts.googleapis.com/css?family=Rammetto+One');
+
+
+@light: #F9F7F7;
+@lightAccent: #D29877;
+@main: #E73628;
+@darkAccent: #5C8DA8;
+@dark: #2E303F;
+
+@alert: #E73628;
+
+@announce: 1.75rem;
+
+body{
+  font-family: "Rammetto One", Helvetica, sans-serif;
+  text-align: center;
+  //padding: 50px 20px 0;
+  background: @light;
+  color: @dark;
+  margin: auto;
+  width: 70%;
+  font-size: 1rem;
+}
+
+h1{
+  font-family: "Zilla Slab Highlight", Helvetica, sans-serif;
+  font-size: 3.5rem;
+  color: @main;
+  transform: rotate(-2deg);
+}
+
+h2 {
+  font-size: @announce;
+  color: @darkAccent;
+}
+
+// Win / Lose div
+#winner, #loser {
+  font-size: 1.5rem;
+  margin: auto;
+}
+
+#winner span, #loser span, #getReady span {
+  color: @main;
+  font-weight: bold;
+}
+#winner span#rank {
+  display: inline-block;
+  font-size: 2rem;
+  text-transform: uppercase
+}
+
+#loser {
+  padding-top: 1rem;
+}
+a.retry {
+  color: @darkAccent;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+}
+a.retry:hover {
+  transform: scale(1.2);
+  color: @main;
+}
+
+// Get ready div
+
+#getReady {
+  padding-top: 1.5rem;
+}
+#getReady a {
+  color: @light;
+  background: @main;
+  text-decoration: none;
+  font-size: 4rem;
+  border-radius: 50px;
+  border: 4px solid @main;
+  padding: 8px 12px;
+  transition-property: transform;
+  transition-duration: 1s;
+  display: inline-block;
+}
+#getReady a:hover {
+  animation-name: wiggle; 
+  animation-duration: .2s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+// Choose a table table
+
+table#choose {
+  border-collapse: collapse;
+  width: auto;
+  margin: auto;
+  text-align: center;
+  border: 0;
+}
+table#choose td {
+  padding: 0;
+  width: 25%;
+  border: 1px solid @dark;
+}
+table#choose td:hover {
+  //background: @main;
+}
+//#choose li {
+  //display: inline;
+//}
+#choose a {
+  display: inline-block;
+  width: 100px;
+  color: @dark;
+  text-decoration: none;
+  font-size: 3rem;
+  text-align: center;
+  //border: 4px solid transparent;
+  //border-radius: 20px;
+}
+#choose a:hover {
+  color: @light;
+  background: @main;
+  //border: 4px solid @main;
+}
+a#help {
+  color: @darkAccent;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  //transition-property: transform;
+}
+a#help:hover {
+  transform: scale(1.2);
+  //transition-duration: .25s;
+  color: @main;
+}
+
+// Quiz div
+
+#quiz #sum span {
+  font-size: 5rem;
+  font-weight: bold;
+  color: @darkAccent;
+  padding: 1rem;
+}
+#quiz #sum #sumX, #quiz #sum #sumEq {
+  font-size: 5rem;
+  color: @dark;
+}
+
+#options a {
+  font-size: 5rem;
+  color: @main;
+  text-decoration: none;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  padding: 0 2.5rem;
+  border-radius: 33px;
+}
+#options a:hover:not(.tried) {
+  background: lighten(@main, 40%);
+  animation-name: wiggle; 
+  animation-duration: .3s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+@keyframes wiggle {
+  0% {transform: rotate(0deg);}
+  20% {transform: rotate(-4deg);}
+  40% {transform: rotate(0deg);}
+  80% {transform: rotate(4deg);}
+  100% {transform: rotate(0deg);}
+}
+#options a.tried {
+  color: fadeout(@main, 75%);
+  cursor: not-allowed;
+}
+
+#instructions p {
+  font-size: 1.2rem;
+  width: 75%;
+  margin: 1rem auto;
+}
+#instructions #ok {
+  font-size: 1.5rem;
+  color: @light;
+  background: @main;
+  border-radius: 40px;
+  border: 4px solid @main;
+  padding: 6px 8px;
+  transition-property: transform;
+  transition-duration: 1s;
+  display: inline-block;
+}
+#instructions #ok:hover {
+  animation-name: wiggle; 
+  animation-duration: .2s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+#completed {
+  font-size: 250%;
+  color: fade(@darkAccent, 20%);
+}
+#completed span {
+  margin: 0 10px;
+}
+#completed .completed {
+  color: @darkAccent;
+}
+
+#lives {
+  font-size: 5rem;
+  color: fade(@main,20%);
+}
+#lives span {
+  margin: 0 20px;
+}
+#lives .used {
+  color: @main;
+}
+
+a {
+  text-decoration: none;
+}
+.warning {
+  color: @alert;
+}
