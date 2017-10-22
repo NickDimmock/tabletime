@@ -22,7 +22,8 @@ winScreen = ->
     $('#winner').show()
     if (winTime < 300) && winTime < parseInt(root.hiScores[root.quizNumber]) or root.hiScores[root.quizNumber] == 0
         # A new record!
-        $('#oldHi').text(root.hiScores[root.quizNumber])
+        old = if root.hiScores[root.quizNumber] then root.hiScores[root.quizNumber] else 'nothing'
+        $('#oldHi').text(old)
         root.hiScores[root.quizNumber] = winTime
         saveHiScores()
         $('#newHi').show()
@@ -30,6 +31,26 @@ winScreen = ->
         $('#currentHiNumber').text(root.quizNumber)
         $('#currentHiScore').text(root.hiScores[root.quizNumber])
         $('#currentHi').show()
+
+loseScreen = ->
+    badLuck = [
+        'Bad luck!'
+        'Game over!'
+        'Oh no!'
+        'Oops!'
+        'Oh dear!'
+        'Whoops!'
+        'Three strikes!'
+    ]
+    tryAgain = [
+        "Don't give up!"
+        'You can do it!'
+        'Have another go!'
+    ]
+    $('#loser h2').text(pickRandom(badLuck))
+    $('#tryAgainMsg').text(pickRandom(tryAgain))
+    clearScreen()
+    $('#loser').show()
 
 showHelp = ->
     # Show the help screen
@@ -107,8 +128,7 @@ checkGuess = (g) ->
         #Wrong!
         if root.life == 3
             # It's all over!
-            clearScreen()
-            $('#loser').show()
+            loseScreen()
         else
             # Mark a lost life and increment the current life:
             $('span[data-life="'+root.life+'"]').addClass('used')
@@ -135,7 +155,8 @@ updateHiScores = ->
     # Update score table for existing scores:
     for score, num in root.hiScores
         if score
-            $('td[data-score="' + num + '"]').text(score + 's')
+            $('td.scoresTableScore[data-score="' + num + '"]').text(score + 's')
+            $('td.scoresTableRank[data-score="' + num + '"]').text(root.rater.rate(score))
 
 saveHiScores = ->
     localStorage.hiScores = JSON.stringify root.hiScores
@@ -149,6 +170,9 @@ shuffle = (a) ->
         a[j] = a[i]
         a[i] = t
     a
+
+pickRandom = (a) ->
+    a[Math.floor(Math.random() * a.length)]
 
 $ ->
     root.rater = new AnimalRater()

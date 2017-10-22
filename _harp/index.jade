@@ -18,6 +18,7 @@ h1 TableTime!
         h2 How to play
         p Click the correct answers to complete the 1-12x table for a speed ranking!
         p You have #[span.warning three lives].
+        p Try to beat your hi score!
         p
             a(href="#")#ok OK!
 
@@ -41,6 +42,7 @@ h1 TableTime!
     #loser.page
         h2 Bad luck!
         p You're out of lives!
+        p#tryAgainMsg
         p
             a(href="#").retry.scaleLink Try again
 
@@ -64,10 +66,9 @@ h1 TableTime!
     #hiScores.page
         h2 Hi Scores
         table#scoresTable
-            each num in [1,2,3,4,5,6]
+            each num in [1,2,3,4,5,6,7,8,9,10,11,12]
                 tr
                     td.scoresTableNumber= num
                     td.scoresTableScore(data-score= num) ???
-                    td.scoresTableNumber= num + 6
-                    td.scoresTableScore(data-score= num + 6) ???
+                    td.scoresTableRank(data-score= num) ???
         a(href="#")#closeScores.scaleLink Let's play!

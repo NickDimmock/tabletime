@@ -40,7 +40,7 @@ h1{
 
 h2 {
   font-size: @announce;
-  color: @darkAccent;
+  color: @dark;
 }
 
 // Win / Lose div
@@ -105,21 +105,24 @@ table#scoresTable {
   margin: auto;
   text-align: center;
   border: 0;
-  font-size: 1.2rem;
-  margin-bottom: .5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 table#scoresTable td {
-  padding: .5rem 1.25rem;
-  width: 25%;
+  padding: .5rem;
   border: 1px solid @dark;
 }
 table#scoresTable td.scoresTableNumber {
   width: 15%;
-  color: @darkAccent;
+  color: @dark;
 }
 table#scoresTable td.scoresTableScore {
-  width: 35%;
+  width: 25%;
   color: @main;
+}
+table#scoresTable td.scoresTableRank {
+  width: 60%;
+  color: @darkAccent;
 }
 
 // Choose a table table
