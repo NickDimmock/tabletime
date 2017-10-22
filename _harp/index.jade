@@ -12,6 +12,7 @@ h1 TableTime!
                         a(href ='#')= val
         p
             a(href="#")#help How to play
+            a(href="#")#showScores Hi scores
 
     #instructions.page
         h2 How to play
@@ -35,13 +36,13 @@ h1 TableTime!
             br
             | #[span#rank Animal!]
         p
-            a(href="#").retry Play again
+            a(href="#").retry.scaleLink Play again
 
     #loser.page
         h2 Bad luck!
         p You're out of lives!
         p
-            a(href="#").retry Try again
+            a(href="#").retry.scaleLink Try again
 
     #quiz.page
         #sum
@@ -60,3 +61,13 @@ h1 TableTime!
         #lives
             each val in [1,2,3]
                     span(data-life= val).life X
+    #hiScores.page
+        h2 Hi Scores
+        table#scoresTable
+            each num in [1,2,3,4,5,6]
+                tr
+                    td.scoresTableNumber= num
+                    td.scoresTableScore(data-score= num) ???
+                    td.scoresTableNumber= num + 6
+                    td.scoresTableScore(data-score= num + 6) ???
+        a(href="#")#closeScores.scaleLink Let's play!

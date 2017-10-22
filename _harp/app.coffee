@@ -20,7 +20,7 @@ winScreen = ->
     $('#rank').text(rank)
     $('#quizNumber').text(root.quizNumber)
     $('#winner').show()
-    if winTime < parseInt(root.hiScores[root.quizNumber]) or root.hiScores[root.quizNumber] == 0
+    if (winTime < 300) && winTime < parseInt(root.hiScores[root.quizNumber]) or root.hiScores[root.quizNumber] == 0
         # A new record!
         $('#oldHi').text(root.hiScores[root.quizNumber])
         root.hiScores[root.quizNumber] = winTime
@@ -116,6 +116,10 @@ checkGuess = (g) ->
             # Mark the answer as tried:
             g.addClass('tried')
 
+showScores = ->
+    clearScreen()
+    $('#hiScores').show()
+
 getHiScores = ->
     if !localStorage.hiScores
         root.hiScores = []
@@ -123,10 +127,19 @@ getHiScores = ->
             root.hiScores[_] = 0
             localStorage.hiScores = JSON.stringify root.hiScores
     else
+        # Set local copy of hi scores
         root.hiScores = JSON.parse localStorage.hiScores
+        updateHiScores()
+
+updateHiScores = ->
+    # Update score table for existing scores:
+    for score, num in root.hiScores
+        if score
+            $('td[data-score="' + num + '"]').text(score + 's')
 
 saveHiScores = ->
     localStorage.hiScores = JSON.stringify root.hiScores
+    updateHiScores()
 
 shuffle = (a) ->
     i = a.length
@@ -140,6 +153,8 @@ shuffle = (a) ->
 $ ->
     root.rater = new AnimalRater()
     root.timer = new Timer()
+
+    getHiScores()
 
     $('a').click ->
         event.preventDefault()
@@ -163,7 +178,11 @@ $ ->
     $('.retry').click ->
         startScreen()
 
-    getHiScores()
+    $('#showScores').click ->
+        showScores()
+    
+    $('#closeScores').click ->
+        startScreen()
 
     startScreen()
     

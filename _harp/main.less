@@ -62,12 +62,13 @@ h2 {
 #loser {
   padding-top: 1rem;
 }
-a.retry {
+
+.scaleLink {
   color: @darkAccent;
   transition: all .2s ease-in-out;
   display: inline-block;
 }
-a.retry:hover {
+a.scaleLink:hover {
   transform: scale(1.2);
   color: @main;
 }
@@ -96,6 +97,31 @@ a.retry:hover {
   animation-timing-function: ease;
 }
 
+// Hi scores table
+
+table#scoresTable {
+  border-collapse: collapse;
+  width: auto;
+  margin: auto;
+  text-align: center;
+  border: 0;
+  font-size: 1.2rem;
+  margin-bottom: .5rem;
+}
+table#scoresTable td {
+  padding: .5rem 1.25rem;
+  width: 25%;
+  border: 1px solid @dark;
+}
+table#scoresTable td.scoresTableNumber {
+  width: 15%;
+  color: @darkAccent;
+}
+table#scoresTable td.scoresTableScore {
+  width: 35%;
+  color: @main;
+}
+
 // Choose a table table
 
 table#choose {
@@ -110,12 +136,6 @@ table#choose td {
   width: 25%;
   border: 1px solid @dark;
 }
-table#choose td:hover {
-  //background: @main;
-}
-//#choose li {
-  //display: inline;
-//}
 #choose a {
   display: inline-block;
   width: 100px;
@@ -123,23 +143,19 @@ table#choose td:hover {
   text-decoration: none;
   font-size: 3rem;
   text-align: center;
-  //border: 4px solid transparent;
-  //border-radius: 20px;
 }
 #choose a:hover {
   color: @light;
   background: @main;
-  //border: 4px solid @main;
 }
-a#help {
+a#help, a#showScores {
   color: @darkAccent;
   transition: all .2s ease-in-out;
   display: inline-block;
-  //transition-property: transform;
+  padding: 0 1rem;
 }
-a#help:hover {
+a#help:hover, a#showScores:hover {
   transform: scale(1.2);
-  //transition-duration: .25s;
   color: @main;
 }
 
