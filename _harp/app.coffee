@@ -9,15 +9,28 @@ startScreen = ->
 clearScreen = ->
     # Hide all pages
     $('.page').hide()
+    $('#newHi').hide()
+    $('#currentHi').hide()
 
 winScreen = ->
-    roundTime = root.timer.stop()
-    rank = root.rater.rate(roundTime)
-    $('#roundTime').text(roundTime)
-    $('#rank').text(rank)
-    $('#quizNumber').text(quizNumber)
     clearScreen()
+    winTime = root.timer.stop()
+    rank = root.rater.rate(winTime)
+    $('#roundTime').text(winTime)
+    $('#rank').text(rank)
+    $('#quizNumber').text(root.quizNumber)
     $('#winner').show()
+    if winTime < parseInt(root.hiScores[root.quizNumber]) or root.hiScores[root.quizNumber] == 0
+        # A new record!
+        console.log 'A new record!'
+        $('#oldHi').text(root.hiScores[root.quizNumber])
+        root.hiScores[root.quizNumber] = winTime
+        saveHiScores()
+        $('#newHi').show()
+    else
+        $('#currentHiNumber').text(root.quizNumber)
+        $('#currentHiScore').text(root.hiScores[root.quizNumber])
+        $('#currentHi').show()
 
 showHelp = ->
     # Show the help screen
@@ -104,6 +117,18 @@ checkGuess = (g) ->
             # Mark the answer as tried:
             g.addClass('tried')
 
+getHiScores = ->
+    if !localStorage.hiScores
+        root.hiScores = []
+        for _ in [1..12]
+            root.hiScores[_] = 0
+            localStorage.hiScores = JSON.stringify root.hiScores
+    else
+        root.hiScores = JSON.parse localStorage.hiScores
+
+saveHiScores = ->
+    localStorage.hiScores = JSON.stringify root.hiScores
+
 shuffle = (a) ->
     i = a.length
     while --i > 0
@@ -138,6 +163,8 @@ $ ->
 
     $('.retry').click ->
         startScreen()
+
+    getHiScores()
 
     startScreen()
     

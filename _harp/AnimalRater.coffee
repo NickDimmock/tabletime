@@ -1,8 +1,6 @@
 class @AnimalRater
 
   constructor: ->
-    @scoreMax = 60
-    @scoreMin = 10
 
     @animals = [
       'Cheetah'
@@ -14,16 +12,18 @@ class @AnimalRater
       'Cougar'
       'Puma'
       'Jaguar'
+      'Springbok'
       'Antelope'
       'Gazelle'
+      'Elk'
       'Wildebeest'
       'Impala'
+      'Wolf'
       'Horse'
       'Zebra'
       'Lynx'
       'Ocelot'
       'Coyote'
-      'Elk'
       'Fox'
       'Hyena'
       'Ostrich'
@@ -31,6 +31,7 @@ class @AnimalRater
       'Greyhound'
       'Whippet'
       'Jackal'
+      'Mongoose'
       'Mule deer'
       'Wildcat'
       'Ferret'
@@ -50,6 +51,7 @@ class @AnimalRater
       'Dachshund'
       'Cobra'
       'Mamba'
+      'Scorpion'
       'Squirrel'
       'Kitten'
       'Pug'
@@ -87,7 +89,8 @@ class @AnimalRater
       'Samurai'
       'Energetic'
       'Nifty'
-      'Thoughful'
+      'Thoughtful'
+      'Jade'
       'Magic'
       'Brave'
       'Giddy'
@@ -114,6 +117,7 @@ class @AnimalRater
       'Speedy'
       'Creeping'
       'Bashful'
+      'Magnetic'
       'Galloping'
       'Fearless'
       'Magnificent'

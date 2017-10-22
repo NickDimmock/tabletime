@@ -26,10 +26,11 @@ h1 TableTime!
             a(href="#")#go Go!
 
     #winner.page
-        h2 You won!
-        p You finished the #[span#quizNumber 7] times table in
-            br
-            | #[span#roundTime 60] seconds!
+        h2 #[span#quizNumber 7] times table complete!
+        p You finished in #[span#roundTime 60] seconds!
+        div#newHi It's a new high score!
+            div The old high score was #[span#oldHi].
+        div#currentHi Your high score for #[span#currentHiNumber] is #[span#currentHiScore].
         p Your rank is
             br
             | #[span#rank Animal!]
