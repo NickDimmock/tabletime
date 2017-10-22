@@ -22,7 +22,6 @@ winScreen = ->
     $('#winner').show()
     if winTime < parseInt(root.hiScores[root.quizNumber]) or root.hiScores[root.quizNumber] == 0
         # A new record!
-        console.log 'A new record!'
         $('#oldHi').text(root.hiScores[root.quizNumber])
         root.hiScores[root.quizNumber] = winTime
         saveHiScores()

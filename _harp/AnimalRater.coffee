@@ -186,9 +186,6 @@ class @AnimalRater
     adjScore = (score % 1).toFixed(2)
     #adjRatio = adjScore / 100
     adj = Math.floor(adjScore * (@adjectives.length))
-    console.log adjScore
-    #console.log adjRatio
-    console.log adj
     return @adjectives[adj] + ' '  + @animals[animal]
 
   checkUnique: (arr) ->
