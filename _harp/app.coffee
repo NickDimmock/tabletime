@@ -28,7 +28,10 @@ winScreen = ->
         $('#winner').show()
         if displayTime < root.hiScores[root.quizNumber] or root.hiScores[root.quizNumber] == 0
             # A new record!
-            old = if root.hiScores[root.quizNumber] then root.hiScores[root.quizNumber] else 'nothing'
+            old =
+            if root.hiScores[root.quizNumber]
+            then root.hiScores[root.quizNumber]
+            else 'nothing'
             $('#oldHi').text(old)
             root.hiScores[root.quizNumber] = displayTime
             saveHiScores()
@@ -73,7 +76,7 @@ getReady = ->
 startQuiz = ->
     # Set up a new quiz and show the quiz screen
     clearScreen()
-    root.tableNumbers = shuffle([1,2,3,4,5,6,7,8,9,10,11,12])
+    root.tableNumbers = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
     # Clear out the lives and completed numbers data & display
     root.life = 1
     root.completed = 0
@@ -108,7 +111,7 @@ addOption = ->
     # Add an option to the array of possile answers, making sure
     # it's not already in there.
     loop
-        r = Math.floor(Math.random()*12) + 1
+        r = Math.floor(Math.random() * 12) + 1
         r = r * root.quizNumber
         break if root.options.indexOf(r) is -1
     root.options.push r
@@ -117,7 +120,7 @@ checkGuess = (g) ->
     # Check if a guess is correct and update accordingly
     # g is the jQuery object clicked
     if g.hasClass('tried')
-        return false;
+        return false
     myAnswer = parseInt(g.text(), 10)
     if myAnswer is root.answer
         # Correct!
@@ -137,7 +140,7 @@ checkGuess = (g) ->
             loseScreen()
         else
             # Mark a lost life and increment the current life:
-            $('span[data-life="'+root.life+'"]').addClass('used')
+            $('span[data-life="' + root.life + '"]').addClass('used')
             root.life++
             # Mark the answer as tried:
             g.addClass('tried')
