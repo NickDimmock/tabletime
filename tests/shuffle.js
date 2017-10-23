@@ -1,1 +1,0 @@
-var _,a,b,c,e,k,l,len,shuffle,yow;shuffle=function(a){var i,j,t;i=a.length;while(--i>0){j=~~(Math.random()*(i+1));t=a[j];a[j]=a[i];a[i]=t}return a};a=[11,22,33];for(_=k=1;k<=2e3;_=++k){b=shuffle(a);c=[];yow=false;for(l=0,len=b.length;l<len;l++){e=b[l];if(c.indexOf(e)!==-1){console.log("YOW!");yow=true}c.push(e)}if(yow){console.log(c)}}
