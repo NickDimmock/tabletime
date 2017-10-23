@@ -14,23 +14,29 @@ clearScreen = ->
 
 winScreen = ->
     clearScreen()
-    winTime = root.timer.stop()
-    rank = root.rater.rate(winTime)
-    $('#roundTime').text(winTime)
-    $('#rank').text(rank)
-    $('#quizNumber').text(root.quizNumber)
-    $('#winner').show()
-    if (winTime < 300) && winTime < parseInt(root.hiScores[root.quizNumber]) or root.hiScores[root.quizNumber] == 0
-        # A new record!
-        old = if root.hiScores[root.quizNumber] then root.hiScores[root.quizNumber] else 'nothing'
-        $('#oldHi').text(old)
-        root.hiScores[root.quizNumber] = winTime
-        saveHiScores()
-        $('#newHi').show()
+    roundTime = root.timer.stop() # 3 decimal places to create adjective
+    # If roundTime is over 5min, assume user walked away and reset
+    if roundTime > 300
+        alert 'Sorry! Session timed out (longer than 5 minutes).' #TODO: replace with proper screen
+        startScreen()
     else
-        $('#currentHiNumber').text(root.quizNumber)
-        $('#currentHiScore').text(root.hiScores[root.quizNumber])
-        $('#currentHi').show()
+        displayTime = roundTime.toFixed(2) # 2 decimal places for score table & display
+        rank = root.rater.rate(roundTime)
+        $('#roundTime').text(displayTime)
+        $('#rank').text(rank)
+        $('#quizNumber').text(root.quizNumber)
+        $('#winner').show()
+        if displayTime < root.hiScores[root.quizNumber] or root.hiScores[root.quizNumber] == 0
+            # A new record!
+            old = if root.hiScores[root.quizNumber] then root.hiScores[root.quizNumber] else 'nothing'
+            $('#oldHi').text(old)
+            root.hiScores[root.quizNumber] = displayTime
+            saveHiScores()
+            $('#newHi').show()
+        else
+            $('#currentHiNumber').text(root.quizNumber)
+            $('#currentHiScore').text(root.hiScores[root.quizNumber])
+            $('#currentHi').show()
 
 loseScreen = ->
     badLuck = [
